@@ -1,0 +1,26 @@
+---
+- hosts: node0
+  gather_facts: yes
+  become: true
+  # remote_user: ansible
+  vars:
+    extra_path: /opt/spark/bin/
+
+  tasks:
+  # - name: add {{extra_path}} to path
+  #   lineinfile: >
+  #     dest=/etc/environment
+  #     state=present
+  #     backrefs=yes
+  #     regexp='PATH=(["]*)((?!.*?{{extra_path}}).*?)(["]*)$'
+  #     line="PATH=\1\2:{{extra_path}}\3"
+  - name: Creating environment variable via file in /etc/profile.d
+    args:
+      chdir: /etc/profile.d
+    shell: echo "export PATH=$PATH:{{ extra_path }}" > env.sh
+
+  #
+  # - name: compile sources
+  #   shell: echo $PATH
+  #   environment:
+  #       PATH: /opt/spark/bin/:{{ ansible_env.PATH }}

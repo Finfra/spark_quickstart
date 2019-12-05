@@ -3,6 +3,8 @@
   gather_facts: yes
   become: true
   remote_user: ansible
+  vars:
+    extra_path: /opt/spark/bin/
 
   tasks:
   - name: Create opt dir
@@ -45,3 +47,8 @@
 
   - name: enable spark slave
     command: "systemctl enable spark-slave.service"
+    
+  - name: Creating environment variable via file in /etc/profile.d
+    args:
+      chdir: /etc/profile.d
+    shell: echo "export PATH=$PATH:{{ extra_path }}" > env.sh

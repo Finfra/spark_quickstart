@@ -36,10 +36,16 @@ Note we use Vagrant to do local testing. For EC2 or other clouds we would use Te
 
 ## Setting up your spark cluster with metrics
 
-
 ### Install ansible and vagrant.
 
 #### installing vagrant
+##### by Apt
+```
+$ apt install -y virtualbox
+$ apt install -y vagrant
+```
+
+##### by Brew
 ```
 $ brew cask install virtualbox
 $ brew cask install vagrant
@@ -49,6 +55,12 @@ See [install vagrant with brew for more details](http://sourabhbajaj.com/mac-set
 
 #### installing ansible
 
+##### by Apt
+```
+$ apt install -y ansible
+```
+
+##### by Brew
 ```bash
 $ brew install ansible
 ```
@@ -60,7 +72,20 @@ $ git clone https://github.com/cloudurable/spark-cluster.git
 $ cd spark-cluster
 ```
 
-### Set up keys for ssh for spark cluster
+
+### Run doAll.sh to install spark cluster and etc by ansible
+
+Vagrant up will bring up all of the server.
+
+```bash
+./doAll.sh
+```
+
+### Contents of doAll.sh 
+* if you exected "./doAll.sh", you don't needs to execute below script  
+
+
+#### Set up keys for ssh for spark cluster
 
 We generate keys for using ssh and ansible.  
 
@@ -68,7 +93,7 @@ We generate keys for using ssh and ansible.
 bin/gen-key.sh
 ```
 
-### Run download.sh to download spark.
+#### Run download.sh to download spark.
 
 We have a script that downloads spark.
 You can customize this script to download a different version of spark.
@@ -81,7 +106,7 @@ The download uses this [spark dist](
 http://apache.spinellicreations.com/spark/spark-2.3.0/spark-2.4.4-bin-hadoop2.7.tgz), you are free to change it.
 
 
-### Run vagrant up to bring up the spark cluster
+#### Run vagrant up to bring up the spark nodes
 
 Vagrant up will bring up all of the server.
 
@@ -89,7 +114,7 @@ Vagrant up will bring up all of the server.
 vagrant up
 ```
 
-### Add keys to your auth known_hosts
+#### Add keys to your auth known_hosts
 
 After you bring up the servers, you can use `ssh-keyscan` to avoid any issues
 with `known_hosts` when using `ansible`.
@@ -98,7 +123,7 @@ with `known_hosts` when using `ansible`.
 In order for that keyscan to work, you need the hostnames for the cluster in your /etc/hosts file as follows:
 
 
-#### Add nodes to your /etc/hosts file for connivence.
+##### Add nodes to your /etc/hosts file for connivence.
 ```bash
 cat >> /etc/hosts <<EOL
 
@@ -113,17 +138,17 @@ cat >> /etc/hosts <<EOL
 EOL
 ```
 
-#### Add known_hosts to avoid ansible issues.
+##### Add known_hosts to avoid ansible issues.
 ```bash
 ssh-keyscan node0 node1 node2  bastion > ~/.ssh/known_hosts
 ```
 
-### Ensure all of the servers are up
+#### Ensure all of the servers are up
 
 You can use the ansible ping module to ensure the servers are up.
 
 ```
-ansible all  -m ping
+ansible nodes  -m ping
 node2 | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -136,17 +161,12 @@ node1 | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
-bastion | SUCCESS => {
-    "changed": false,
-    "ping": "pong"
-}
-
 ```
 
 Ignore any errors you see from bastion. It is place holder.
 
 
-### Add keys to the spark nodes
+#### Add keys to the spark nodes
 
 You can add keys to all of the nodes so you can ssh into them from other nodes
 in the cluster.
@@ -155,7 +175,12 @@ in the cluster.
 ansible-playbook playbooks/keyscan.yml
 ```
 
-### Install Spark Servers, prerequisites, and TICK stack
+#### Install Spark Servers, prerequisites, and TICK stack
+```bash
+./doAnsiblePlaybook.sh
+```
+
+or
 
 ```bash
 # Install Java JDK and command line utils
@@ -173,6 +198,7 @@ ansible-playbook playbooks/configure-metrics.yml
 # Install the influxdb and chronograf on node2
 ansible-playbook playbooks/install-influxdb.yml
 ```
+
 
 ### Setup Chronograf
 
