@@ -78,7 +78,7 @@ bin/download.sh
 ```
 
 The download uses this [spark dist](
-http://apache.spinellicreations.com/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz), you are free to change it.
+http://apache.spinellicreations.com/spark/spark-2.3.0/spark-2.4.4-bin-hadoop2.7.tgz), you are free to change it.
 
 
 ### Run vagrant up to bring up the spark cluster
@@ -276,7 +276,7 @@ To install spark we do this.
 
 ```
 mkdir -p /opt/
-mv spark-2.3.0-bin-hadoop2.7/ /opt/spark
+mv spark-2.4.4-bin-hadoop2.7/ /opt/spark
 ls /opt/spark/
 ```
 This is done by an ansible playbook.
