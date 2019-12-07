@@ -1,0 +1,18 @@
+---
+- hosts: node0
+  gather_facts: yes
+  become: true
+  remote_user: ansible
+  tasks:
+  - pip:
+      name: toree
+      executable: pip3
+  - pip:
+      name: jupyter
+      executable: pip3
+  - pip:
+      name: pyspark
+      executable: pip3
+  - name: "jupyter toree install  --interpreters=Scala,SQL"
+    shell: /usr/local/bin/jupyter toree install      
+

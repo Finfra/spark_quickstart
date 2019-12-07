@@ -6,14 +6,16 @@ fi
 echo "### Run download.sh to download spark."
 if [ ! -f ./resources/dist/spark-2.4.4-bin-hadoop2.7.tgz ]; then
     ./bin/download.sh
-fi 
+fi
 
-echo "### Run vagrant up to bring up the spark cluster"
+
+vagrant rsync
+
 vagrant up
 
 echo "Add nodes to your /etc/hosts file for connivence"
 x=`cat /etc/hosts|grep node0`
-if [ ${#x} -eq 0 ];then 
+if [ ${#x} -eq 0 ];then
 sudo bash -c 'cat >> /etc/hosts <<EOL
 192.168.50.20  bastion
 192.168.50.4  node0

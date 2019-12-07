@@ -57,31 +57,28 @@ See [install vagrant with brew for more details](http://sourabhbajaj.com/mac-set
 
 ##### by Apt
 ```
-$ apt install -y ansible
+apt install -y ansible
 ```
 
 ##### by Brew
-```bash
-$ brew install ansible
+```
+brew install ansible
 ```
 
 ### Pull this project down from github
-
-```bash
-$ git clone https://github.com/cloudurable/spark-cluster.git
-$ cd spark-cluster
+```
+git clone https://github.com/cloudurable/spark-cluster.git
+cd spark-cluster
 ```
 
 
-### Run doAll.sh to install spark cluster and etc by ansible
+### Run doAll.sh to install spark cluster  by ansible
 
-Vagrant up will bring up all of the server.
-
-```bash
+```
 ./doAll.sh
 ```
 
-### Contents of doAll.sh 
+### Contents of doAll.sh
 * if you exected "./doAll.sh", you don't needs to execute below script  
 
 
@@ -103,7 +100,7 @@ bin/download.sh
 ```
 
 The download uses this [spark dist](
-http://apache.spinellicreations.com/spark/spark-2.3.0/spark-2.4.4-bin-hadoop2.7.tgz), you are free to change it.
+https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz), you are free to change it.
 
 
 #### Run vagrant up to bring up the spark nodes
@@ -175,7 +172,7 @@ in the cluster.
 ansible-playbook playbooks/keyscan.yml
 ```
 
-#### Install Spark Servers, prerequisites, and TICK stack
+#### Install Spark Servers, prerequisites 
 ```bash
 ./doAnsiblePlaybook.sh
 ```
@@ -191,6 +188,17 @@ ansible-playbook playbooks/install-spark-master.yml
 ansible-playbook playbooks/install-spark-slave.yml
 # Install the Spark history job server on node0
 ansible-playbook playbooks/install-spark-history.yml
+# Setup Enviroment Values to nodes
+ansible-playbook playbooks/env.yml
+
+```
+
+### Run doAnsiblePlaybookEtc.sh to install etc(TICK stack)  by ansible
+
+#### Contents of doAnsiblePlaybookEtc.sh.sh
+
+##### etc(TICK stack)
+```
 # Install the telegraf on all nodes but statsD input on node1
 ansible-playbook playbooks/install-telegraf.yml
 # Configure Spark Metrics system to output to systemd
@@ -199,8 +207,7 @@ ansible-playbook playbooks/configure-metrics.yml
 ansible-playbook playbooks/install-influxdb.yml
 ```
 
-
-### Setup Chronograf
+##### Setup Chronograf
 
 Go to Chronograf http://node2:8888
 

@@ -9,7 +9,7 @@
     command: "mkdir -p /opt/"
 
   - name: Install Spark Dist
-    command: "cp -R /vagrant/resources/dist/spark-2.4.4-bin-hadoop2.7/ /opt/spark"
+    command: "cp -R /vagrant/resources/dist/spark-2.4.4-bin-hadoop2.7 /opt/spark"
 
   - name: create spark user
     command: "/vagrant/resources/bin/setup-spark-user.sh"
