@@ -40,6 +40,11 @@
         name: python3
         state: latest
 
+    - name: python-pip 
+      yum:
+        name: python-pip
+        state: latest
+
     - name: python3-pip 
       yum:
         name: python3-pip

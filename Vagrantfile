@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
             node.vm.provision "shell", inline: <<-SHELL
                 sudo /vagrant/scripts/000-vagrant-provision.sh
             SHELL
-
+            
         end
   end
 
