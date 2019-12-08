@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VM Setting 
+# VM Setting
 # 1. CPU : 4core, vt-x on
 # 2. Mem : 7000 MB
 # 3. Disk : 25 GB
@@ -12,12 +12,13 @@
 # 2. Install Option : Minimal
 # 3. Computer Name : u1
 
-sudo -i 
+
+sudo -i
 
 # Install Basic Software
 apt update -y
 apt upgrade -y
-apt install -y openssh-server 
+apt install -y openssh-server
 
 #--------------
 apt install -y net-tools tree curl git nfs-kernel-server apt-transport-https ca-certificates software-properties-common ansible
@@ -80,7 +81,7 @@ chown -R root:docker /var/run/docker.sock
 chmod 777 /var/run/docker.sock
 
 # Source Install
-su - ubuntu 
+su - ubuntu
 git clone https://github.com/Finfra/prometheus-course.git
 
 git clone https://github.com/Finfra/spark_quickstart.git
@@ -91,3 +92,11 @@ cd spark_quickstart
 docker pull fpin/docker-hive-spark
 docker pull prom/prometheus
 exit
+
+
+# Other Setting
+## Xwindows : Sidebar(Terminal, Virtualbox), PowserSetting
+## eject Cdrom
+## install VMWare Tool
+## git config setting
+## Add host pc's public key to ~/.ssh/authorized_keys
