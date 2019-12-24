@@ -13,6 +13,16 @@
   - pip:
       name: pyspark
       executable: pip3
-  - name: "jupyter toree install  --interpreters=Scala,SQL"
-    shell: /usr/local/bin/jupyter toree install      
 
+  - pip:
+      name: ipykernel
+      executable: pip3
+  - pip:
+      name: ipython
+      executable: pip3
+  - pip:
+      name: jupyter
+      executable: pip3
+
+  - name: "jupyter toree install  --interpreters=Scala,SQL"
+    shell: /usr/local/bin/jupyter toree install

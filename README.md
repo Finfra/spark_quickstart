@@ -1,3 +1,34 @@
+## Setting up your spark cluster
+
+### Install ansible and vagrant.
+
+#### installing vagrant
+* cf) ./SetupVm_PasteItLineByLine.sh
+```
+apt install -y virtualbox
+apt install -y vagrant
+```
+
+#### installing ansible
+```
+apt install -y ansible
+```
+
+
+### Pull this project down from github
+```
+git clone https://github.com/cloudurable/spark-cluster.git
+cd spark-cluster
+```
+
+
+### Run doAll.sh to install spark cluster  by ansible
+
+```
+./doAll.sh
+```
+
+---
 ## Spark cluster with metrics
 
 ![Spark Metrics Dashboard](https://raw.githubusercontent.com/cloudurable/spark-cluster/master/images/spark-metric-dashboard.png)
@@ -33,50 +64,6 @@ Vagrant, ansible, etc. are all installable via brew.
 
 Note we use Vagrant to do local testing. For EC2 or other clouds we would use Terraform instead.
 
-
-## Setting up your spark cluster with metrics
-
-### Install ansible and vagrant.
-
-#### installing vagrant
-##### by Apt
-```
-$ apt install -y virtualbox
-$ apt install -y vagrant
-```
-
-##### by Brew
-```
-$ brew cask install virtualbox
-$ brew cask install vagrant
-```
-
-See [install vagrant with brew for more details](http://sourabhbajaj.com/mac-setup/Vagrant/README.html).
-
-#### installing ansible
-
-##### by Apt
-```
-apt install -y ansible
-```
-
-##### by Brew
-```
-brew install ansible
-```
-
-### Pull this project down from github
-```
-git clone https://github.com/cloudurable/spark-cluster.git
-cd spark-cluster
-```
-
-
-### Run doAll.sh to install spark cluster  by ansible
-
-```
-./doAll.sh
-```
 
 ### Contents of doAll.sh
 * if you exected "./doAll.sh", you don't needs to execute below script  
@@ -172,7 +159,7 @@ in the cluster.
 ansible-playbook playbooks/keyscan.yml
 ```
 
-#### Install Spark Servers, prerequisites 
+#### Install Spark Servers, prerequisites
 ```bash
 ./doAnsiblePlaybook.sh
 ```
@@ -194,8 +181,11 @@ ansible-playbook playbooks/env.yml
 ```
 
 ### Run doAnsiblePlaybookEtc.sh to install etc(TICK stack)  by ansible
+```
+. doAnsiblePlaybookEtc.sh
+```
 
-#### Contents of doAnsiblePlaybookEtc.sh.sh
+#### Contents of doAnsiblePlaybookEtc.sh
 
 ##### etc(TICK stack)
 ```
