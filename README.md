@@ -28,6 +28,14 @@ cd spark-cluster
 ./doAll.sh
 ```
 
+### Run doDockerHive.sh to test SparkSql with hive  by ansible
+* It is include emp, dept hive example.
+```
+./doDockerHive.sh
+```
+
+* Result
+
 ---
 ## Spark cluster with metrics
 
