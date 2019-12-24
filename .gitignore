@@ -5,3 +5,4 @@ resources/dist/
 *.tgz
 resources/server/certs/spark_rsa*
 templates/wikipedia.dat
+docker-hive/
